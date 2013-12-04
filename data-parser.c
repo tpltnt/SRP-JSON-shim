@@ -308,21 +308,20 @@ SRP_RoutingCriterion_t* json_to_routing_criterion(json_t *json) {
     return NULL;
   }
 
-  fprintf(stderr, "criterion extraction worked\n");
-  fprintf(stderr, "metric: %s\n", metric_identifier);
-  fprintf(stderr, "operator: %s\n", operator);
-  fprintf(stderr, "value: %s\n", value);
-  // plunge data it into the data-structure and spit it out
+  criterion = (SRP_RoutingCriterion_t*)malloc(sizeof(SRP_RoutingCriterion_t));
+  if (NULL == criterion) {
+	  fprintf(stderr, "allocating memory for the routing criterion failed\n");
+	  free(metric_identifier);
+	  free(operator);
+	  free(value);
+	  return NULL;
+  }
 
-  fprintf(stderr, "assigning metric identifier\n");
+  // plunge data into the data-structure and spit it out
   criterion->metric_identifier = metric_identifier;
-  fprintf(stderr, "assigning operator\n");
   criterion->operator = operator;
-  fprintf(stderr, "assigning value\n");
   criterion->value = value;
-  fprintf(stderr, "assigning next*\n");
   criterion->next = NULL;
-  fprintf(stderr,"assigning values in data-structure worked\n");
   return criterion;
 }
 
