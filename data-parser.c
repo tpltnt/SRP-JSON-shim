@@ -12,8 +12,9 @@
 #ifndef SRPDATATYPES_H_
 	#include "srp_datatypes.h"
 #endif
+#include "data-parser.h"
 
-/**
+/*
  * Return JSON node "nodes" from given file
  * @param filename of file to be parsed
  * @returns JSON document node in case of success, NULL otherwise
@@ -72,7 +73,7 @@ json_t* get_nodes(const char* filename) {
 }
 
 
-/**
+/*
  * Convert a JSON network node to a SRP Network node
  * @param node from the JSON datastructure
  * @returns SRP_NetworkNode_t pointer in case of success, NULL otherwise
@@ -166,7 +167,7 @@ SRP_NetworkNode_t* jsonNode_to_SRP_NetworkNode(json_t *node){
 }
 
 
-/**
+/*
  * Convert JSON-nodes data to SRP_Network
  * @param nodes to be parsed
  * @returns SRP_Network in case of success, NULL otherwise
@@ -230,7 +231,7 @@ SRP_Network_t* json_data_to_network(json_t *nodes){
 }
 
 
-/**
+/*
  * Convert JSON object to routing criterion.
  * @param json points to the JSON object to be converted
  * @returns a pointer of type SRP_RoutingCriterion_t in case of success, NULL in case of error
@@ -363,7 +364,7 @@ SRP_RoutingCriterion_t* json_to_routing_criterion(json_t *json) {
 }
 
 
-/**
+/*
  * Extract the objective functions from a given dataset.
  * @param filename contains the name of the JSON file to be parsed
  * @returns The fist element of a list of extracted objective functions, NULL in case of error
@@ -480,7 +481,7 @@ SRP_ObjectiveFunction_t* extract_objective_functions(const char* filename){
 }
 
 
-/**
+/*
  * @brief Filter a given network according to a given objective function.
  * This function reduces the network to all the nodes fullfilling the conditions
  * defined in the given objective funtion. All conditions must be fullfilled by
@@ -510,33 +511,4 @@ SRP_Network_t* filter_network(SRP_Network_t* network, char* criteria){
   }
 
   return NULL;
-}
-
-
-int main(int argc, char* argv[]){
-  json_t *nodes = NULL;
-  SRP_Network_t *network = NULL;
-
-  // check for correct number of arguments
-  if (2 != argc) {
-    fprintf(stderr, "invalid number of arguments given\n");
-    fprintf(stdout, "usage: %s <network data JSON file>\n", argv[0]);
-  }
-
-  //@todo sanity checks for argv[1]
-  nodes = get_nodes(argv[1]);
-  if (!nodes) {
-    fprintf(stderr, "extracting nodes failed\n");
-    return 1;
-  }
-
-  network = json_data_to_network(nodes);
-  if (NULL == network) {
-    return 2;
-  }
-
-  //@todo sanity checks for argv[1]
-  extract_objective_functions(argv[1]);
-
-  return 0;
 }

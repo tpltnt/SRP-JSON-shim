@@ -6,9 +6,11 @@ srp_datatypes.o: SRP/srp_datatypes.c
 	$(CC) -c SRP/srp_datatypes.c -o srp_datatypes.o
 data-parser.o: data-parser.c 
 	$(CC) -c data-parser.c -o data-parser.o
+main.o: main.c
+	$(CC) -c main.c -o main.o
 
-all: srp_datatypes.o data-parser.o
-	$(CC) srp_datatypes.o data-parser.o `pkg-config --cflags --libs jansson` -o simulation-proxy
+all: srp_datatypes.o data-parser.o main.o
+	$(CC) srp_datatypes.o data-parser.o main.o `pkg-config --cflags --libs jansson` -o simulation-proxy
 
 testdata: testdata.json testdata2.json testdata3.json
 	cat testdata.json | python3 -m json.tool
@@ -23,3 +25,4 @@ test: all testdata
 clean:
 	rm srp_datatypes.o
 	rm data-parser.o
+	rm main.o
