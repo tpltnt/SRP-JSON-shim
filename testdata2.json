@@ -1,0 +1,203 @@
+{
+    "content": "network state",
+    "version": 0.1,
+    "nodes": [
+        {
+            "node id": 101,
+            "weight": 115,
+            "neighbours": []
+        },
+        {
+            "node id": 202,
+            "weight": 161,
+            "neighbours": []
+        },
+        {
+            "node id": 303,
+	    "weight": 191,
+            "node energy": {
+                "type": 1,
+                "level": 0.5
+            },
+            "neighbours": [
+                {
+                    "node id": 404,
+                    "weight": 196,
+                    "throughput": {
+                        "available": 2.1,
+                        "maximum": 8.6
+                    },
+                    "latency": 126
+                },
+                {
+                    "node id": 505,
+                    "weight": 162,
+                    "throughput": {
+                        "available": 0.4,
+                        "maximum": 9.4
+                    },
+                    "latency": 69
+                }
+             ]
+        },
+        {
+            "node id": 404,
+            "weight": 190,
+            "neighbours": [
+                {
+                    "node id": 808,
+                    "weight": 117
+                },
+                {
+                    "node id": 606,
+                    "weight": 48
+                }
+            ]
+        },
+        {
+            "node id": 505,
+            "weight": 162,
+            "neighbours": [
+                {
+                    "node id": 808,
+                    "weight": 114
+                },
+                {
+                    "node id": 909,
+                    "weight": 193
+                },
+                {
+                    "node id": 8739,
+                    "weight": 94
+                }
+            ]
+        },
+        {
+            "node id": 606,
+            "weight": 134,
+            "neighbours": [
+                {
+                    "node id": 404,
+                    "weight": 75
+                }
+            ]
+        },
+        {
+            "node id": 707,
+            "weight": 139,
+            "neighbours": [
+                {
+                    "node id": 303,
+                    "weight": 57
+                },
+                {
+                    "node id": 7484,
+                    "weight": 43
+                }
+            ]
+        },
+        {
+            "node id": 808,
+            "weight": 185,
+            "neighbours": [
+                {
+                    "node id": 4839,
+                    "weight": 251
+                }
+            ]
+        },
+        {
+            "node id": 909,
+            "weight": 193,
+            "neighbours": [
+                {
+                    "node id": 7484,
+                    "weight": 200
+                },
+                {
+                    "node id": 101,
+                    "weight": 176
+                },
+                {
+                    "node id": 8739,
+                    "weight": 63
+                }
+            ]
+        },
+        {
+            "node id": 7484,
+            "weight": 254,
+            "neighbours": [
+                {
+                    "node id": 303,
+                    "weight": 163
+                },
+                {
+                    "node id": 707,
+                    "weight": 139
+                },
+                {
+                    "node id": 47493,
+                    "weight": 27
+                }
+            ]
+        },
+        {
+            "node id": 4839,
+            "weight": 123,
+            "neighbours": [
+                {
+                    "node id": 808,
+                    "weight": 19
+                },
+                {
+                    "node id": 8739,
+                    "weight": 183
+                }
+            ]
+        },
+        {
+            "node id": 47493,
+            "weight": 190,
+            "neighbours": [
+                {
+                    "node id": 4839,
+                    "weight": 38
+                },
+                {
+                    "node id": 606,
+                    "weight": 198
+                }
+            ]
+        },
+        {
+            "node id": 8739,
+            "weight": 156,
+            "neighbours": [
+                {
+                    "node id": 404,
+                    "weight": 43
+                },
+                {
+                    "node id": 4839,
+                    "weight": 48
+                },
+                {
+                    "node id": 7493,
+                    "weight": 148
+                }
+            ]
+        }
+    ],
+    "routes": [
+        {
+            "route id": 27393,
+            "path": [
+                707,
+                303,
+                505,
+                909
+            ]
+        }
+    ]
+}
