@@ -308,11 +308,16 @@ SRP_RoutingCriterion_t* json_to_routing_criterion(json_t *json) {
     return NULL;
   }
 
+  fprintf(stderr, "criterion extraction worked\n");
+  fprintf(stderr, "metric: %s\n", metric_identifier);
+  fprintf(stderr, "operator: %s\n", operator);
+  fprintf(stderr, "value: %s\n", value);
   // plunge data it into the data-structure and spit it out
   criterion->metric_identifier = metric_identifier;
   criterion->operator = operator;
   criterion->value = value;
   criterion->next = NULL;
+  fprintf(stderr,"assigning values in data-structure worked\n");
   return criterion;
 }
 
