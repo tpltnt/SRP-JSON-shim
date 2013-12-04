@@ -27,7 +27,7 @@ json_t* get_nodes(const char* filename) {
   json_t *value = NULL;      //< value for iterations
 
 
-  // do inital read of the data + some sanity checks
+  // do initial read of the data + some sanity checks
   root = json_load_file(filename, 0, &json_error);
   if (!root) {
     fprintf(stderr, "%s\n", json_error.text);
