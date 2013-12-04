@@ -308,58 +308,11 @@ SRP_RoutingCriterion_t* json_to_routing_criterion(json_t *json) {
     return NULL;
   }
 
-  // construct the rule
-  criterion = (SRP_RoutingCriterion_t*)malloc(sizeof(SRP_RoutingCriterion_t));
-  if (NULL == criterion) {
-    fprintf(stderr, "allocating memory for the criterion data-structure failed\n");
-    free(metric_identifier);
-    free(operator);
-    free(value);
-    return NULL;
-  }
-
-  rule = (char*)calloc(strlen(metric_identifier)
-                       + strlen(operator)
-                       + strlen(value)
-                       + 3, sizeof(char));
-
-  if (!strcat(rule, metric_identifier)
-      || !strcat(rule, "#")) {
-    fprintf(stderr, "constructing first third of the rule failed\n");
-    free(metric_identifier);
-    free(operator);
-    free(value);
-    free(rule);
-    free(criterion);
-    return NULL;
-  }
-  free(metric_identifier);
-
-  if (!strcat(rule, operator) 
-      || !strcat(rule, "#")) {
-    fprintf(stderr, "constructing second third of the rule failed\n");
-    free(operator);
-    free(value);
-    free(rule);
-    free(criterion);
-    return NULL;
-  }
-  free(operator);
-
-  if (!strcat(rule, value)) {
-    fprintf(stderr, "constructing last third of the rule failed\n");
-    free(metric_identifier);
-    free(value);
-    free(rule);
-    free(criterion);
-    return NULL;
-  }
-  free(value);
-
-  // plunge it into the data-structure and spit it out
-  criterion->rule = rule;
+  // plunge data it into the data-structure and spit it out
+  criterion->metric_identifier = metric_identifier;
+  criterion->operator = operator;
+  criterion->value = value;
   criterion->next = NULL;
-  fprintf(stdout, "rule: %s\n", criterion->rule);
   return criterion;
 }
 
