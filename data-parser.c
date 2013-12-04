@@ -75,7 +75,7 @@ json_t* get_nodes(const char* filename) {
 
 /*
  * Convert a JSON network node to a SRP Network node
- * @param node from the JSON datastructure
+ * @param node from the JSON data-structure
  * @returns SRP_NetworkNode_t pointer in case of success, NULL otherwise
  * @see json_data_to_network(json_t *nodes)
  */
@@ -313,9 +313,14 @@ SRP_RoutingCriterion_t* json_to_routing_criterion(json_t *json) {
   fprintf(stderr, "operator: %s\n", operator);
   fprintf(stderr, "value: %s\n", value);
   // plunge data it into the data-structure and spit it out
+
+  fprintf(stderr, "assigning metric identifier\n");
   criterion->metric_identifier = metric_identifier;
+  fprintf(stderr, "assigning operator\n");
   criterion->operator = operator;
+  fprintf(stderr, "assigning value\n");
   criterion->value = value;
+  fprintf(stderr, "assigning next*\n");
   criterion->next = NULL;
   fprintf(stderr,"assigning values in data-structure worked\n");
   return criterion;
@@ -347,7 +352,7 @@ SRP_ObjectiveFunction_t* extract_objective_functions(const char* filename){
     return NULL;
   }
   
-  // do inital read of the data + some sanity checks
+  // do initial read of the data + some sanity checks
   json = json_load_file(filename, 0, &json_error);
   if (!json) {
     fprintf(stderr, "%s\n", json_error.text);
@@ -404,7 +409,7 @@ SRP_ObjectiveFunction_t* extract_objective_functions(const char* filename){
       return NULL;
     }
     if (!json_is_array(criteria)) {
-      fprintf(stderr, "'criteria'-key not assiciated with an array\n");
+      fprintf(stderr, "'criteria'-key not associated with an array\n");
       free(of_id);
       return NULL;
     }
@@ -441,8 +446,8 @@ SRP_ObjectiveFunction_t* extract_objective_functions(const char* filename){
 
 /*
  * @brief Filter a given network according to a given objective function.
- * This function reduces the network to all the nodes fullfilling the conditions
- * defined in the given objective funtion. All conditions must be fullfilled by
+ * This function reduces the network to all the nodes fulfilling the conditions
+ * defined in the given objective function. All conditions must be fulfilled by
  * a node in order to be kept in the network.
  * In case "criteria" is NULL or of length zero, the given network will be returned unfiltered.
  * The "criteria" string uses the character '#' as a delimiter. This character is therefore not
