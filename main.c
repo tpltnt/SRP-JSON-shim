@@ -18,6 +18,7 @@
 int main(int argc, char* argv[]){
   json_t *nodes = NULL;
   SRP_Network_t *network = NULL;
+  SRP_ObjectiveFunction_t *of = NULL;
 
   // check for correct number of arguments
   if (2 != argc) {
@@ -38,7 +39,10 @@ int main(int argc, char* argv[]){
   }
 
   //@todo sanity checks for argv[1]
-  extract_objective_functions(argv[1]);
+  of = extract_objective_functions(argv[1]);
+  if (NULL == of) {
+	  return 3;
+  }
 
   return 0;
 }
