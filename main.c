@@ -66,5 +66,9 @@ int main(int argc, char* argv[]){
   }
   fprintf(stdout, "%llu\n", hop->id);
 
+  if (1 != write_route_to_JSON_file(argv[1], 23234242, path)){
+	  return 6;
+  }
+
   return 0;
 }

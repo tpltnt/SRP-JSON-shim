@@ -487,36 +487,97 @@ SRP_Network_t* filter_network(SRP_Network_t* network, char* criteria){
 int write_route_to_JSON_file(const char *filename, int route_id, SRP_node_list_t *route) {
 	  json_t *root = NULL;       	//< root of the document tree
 	  json_t *new_route = NULL;		//< object for the new route
+	  json_t *path = NULL;			//< path array inside new route
+	  json_t *data_value = NULL;	//< generic (key) value (for constructing the route object)
 	  json_t *json_routes = NULL;  	//< array of all routes
 	  json_error_t json_error;   	//< error indication
+	  SRP_node_list_element_t *current_node = NULL; //< current node along the path
 
 	  if (NULL == filename) {
-		  return 1;
+		  return 0;
 	  }
 	  if (NULL == route) {
-		  return 1;
+		  return 0;
+	  }
+	  if (NULL == route->start) {
+		  return 0;
 	  }
 
 	  // do initial read of the data + some sanity checks
 	  root = json_load_file(filename, 0, &json_error);
 	  if (!root) {
 	    fprintf(stderr, "%s\n", json_error.text);
-	    return 1;
+	    return 0;
 	  }
 	  if (!json_is_object(root)) {
 	    fprintf(stderr, "JSON data at root is not an object\n");
-	    return 1;
+	    return 0;
 	  }
 
 	  // check routes key
 	  json_routes = json_object_get(root, "routes");
 	  if (!json_routes) {
 	    fprintf(stderr, "\"routes\"-key not found\n");
-	    return 1;
+	    return 0;
 	  }
 	  if (!json_is_array(json_routes)) {
 		  fprintf(stderr, "\"routes\"-key not associated with an array\n");
-		  return 1;
+		  return 0;
 	  }
-	return 1;
+
+	  // prepare new route object
+	  new_route = json_object();
+	  if (NULL == new_route) {
+		  fprintf(stderr, "creating a new 'route'-object failed\n");
+		  return 0;
+	  }
+	  data_value = json_pack("i", route_id);
+	  if (NULL == data_value) {
+		  fprintf(stderr, "packing the route-id failed\n");
+		  return 0;
+	  }
+	  if (0 != json_object_set(json_routes, "route id", data_value)) {
+		  fprintf(stderr, "creating 'route-id' key/value pair failed\n");
+		  return 0;
+	  }
+
+	  // create path array
+	  path = json_array();
+	  if (NULL == path) {
+		  fprintf(stderr, "creating path array failed\n");
+		  return 0;
+	  }
+
+	  current_node = route->start;
+	  while (NULL != current_node) {
+		  data_value = json_pack("i", current_node->id);
+		  if (NULL == data_value) {
+			  fprintf(stderr, "packing the node ID failed\n");
+			  return 0;
+		  }
+		  if (0 != json_array_append(path, data_value)) {
+			  fprintf(stderr, "appending node ID failed\n");
+			  return 0;
+		  }
+		  current_node = (SRP_node_list_element_t*)current_node->next;
+	  }
+
+	  if (0 != json_object_set(new_route, "path", path)){
+		  fprintf(stderr, "inserting path data failed\n");
+		  return 0;
+	  }
+
+	  if (0 != json_array_append(json_routes, new_route)){
+		  fprintf(stderr, "inserting new route data failed\n");
+		  return 0;
+	  }
+
+
+	  // write data
+	  if (0 != json_dump_file(root, filename ,0)) {
+		  fprintf(stderr, "(over)writing the JSON file failed\n");
+		  return 0;
+	  }
+
+	  return 1;
 }

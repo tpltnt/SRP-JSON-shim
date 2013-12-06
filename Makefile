@@ -12,7 +12,7 @@ data-parser.o: data-parser.c
 main.o: main.c
 	$(CC) -c main.c -o main.o
 
-all: srp_datatypes.o data-parser.o main.o
+all: srp.o srp_datatypes.o data-parser.o main.o
 	$(CC) srp.o srp_datatypes.o data-parser.o main.o `pkg-config --cflags --libs jansson` -o simulation-proxy
 
 testdata: testdata4.json
