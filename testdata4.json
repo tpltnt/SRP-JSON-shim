@@ -1,1 +1,161 @@
-{"objective functions": [{"id": 23542, "criteria": [{"value": "5", "metric": "owner", "operator": "=="}]}], "version": 0.20000000000000001, "content": "network state", "routes": [{"path": [23, 303, 505, 808, 42], "route id": 23234242}], "nodes": [{"node id": 101, "node owner": 5, "weight": 115, "neighbours": []}, {"node id": 202, "node owner": 5, "weight": 161, "neighbours": []}, {"node id": 303, "node energy": {"type": 1, "level": 0.5}, "node owner": 5, "weight": 191, "neighbours": [{"node id": 404, "latency": 126, "weight": 196, "throughput": {"available": 2.1000000000000001, "maximum": 8.5999999999999996}}, {"node id": 505, "latency": 69, "weight": 162, "throughput": {"available": 0.40000000000000002, "maximum": 9.4000000000000004}}]}, {"node id": 404, "node owner": 5, "weight": 190, "neighbours": [{"node id": 808, "weight": 117}, {"node id": 606, "weight": 48}]}, {"node id": 505, "node owner": 5, "weight": 162, "neighbours": [{"node id": 808, "weight": 114}, {"node id": 909, "weight": 193}]}, {"node id": 606, "node owner": 5, "weight": 134, "neighbours": [{"node id": 404, "weight": 75}]}, {"node id": 707, "node owner": 5, "weight": 139, "neighbours": [{"node id": 303, "weight": 57}]}, {"node id": 808, "node owner": 5, "weight": 185, "neighbours": [{"node id": 42, "weight": 59}]}, {"node id": 909, "node owner": 5, "weight": 193, "neighbours": [{"node id": 42, "weight": 159}]}, {"node id": 23, "node owner": 5, "weight": 20, "neighbours": [{"node id": 303, "weight": 39}, {"node id": 505, "weight": 219}]}, {"node id": 42, "node owner": 5, "weight": 194, "neighbours": [{"node id": 909, "weight": 49}]}]}
+{
+    "content": "network state",
+    "version": 0.2,
+    "nodes": [
+        {
+            "node id": 101,
+            "weight": 115,
+            "node owner": 5,
+            "neighbours": []
+        },
+        {
+            "node id": 202,
+            "weight": 161,
+            "node owner": 5,
+            "neighbours": []
+        },
+        {
+            "node id": 303,
+	        "weight": 191,
+            "node owner": 5,
+            "node energy": {
+                "type": 1,
+                "level": 0.5
+            },
+            "neighbours": [
+                {
+                    "node id": 404,
+                    "weight": 196,
+                    "throughput": {
+                        "available": 2.1,
+                        "maximum": 8.6
+                    },
+                    "latency": 126
+                },
+                {
+                    "node id": 505,
+                    "weight": 162,
+                    "throughput": {
+                        "available": 0.4,
+                        "maximum": 9.4
+                    },
+                    "latency": 69
+                }
+             ]
+        },
+        {
+            "node id": 404,
+            "weight": 190,
+            "node owner": 5,
+            "neighbours": [
+                {
+                    "node id": 808,
+                    "weight": 117
+                },
+                {
+                    "node id": 606,
+                    "weight": 48
+                }
+            ]
+        },
+        {
+            "node id": 505,
+            "weight": 162,
+            "node owner": 5,
+            "neighbours": [
+                {
+                    "node id": 808,
+                    "weight": 114
+                },
+                {
+                    "node id": 909,
+                    "weight": 193
+                }
+            ]
+        },
+        {
+            "node id": 606,
+            "weight": 134,
+            "node owner": 5,
+            "neighbours": [
+                {
+                    "node id": 404,
+                    "weight": 75
+                }
+            ]
+        },
+        {
+            "node id": 707,
+            "weight": 139,
+            "node owner": 5,
+            "neighbours": [
+                {
+                    "node id": 303,
+                    "weight": 57
+                }
+            ]
+        },
+        {
+            "node id": 808,
+            "weight": 185,
+            "node owner": 5,
+            "neighbours": [
+                {
+                    "node id": 42,
+                    "weight": 59
+                }
+            ]
+        },
+        {
+            "node id": 909,
+            "weight": 193,
+            "node owner": 5,
+            "neighbours": [
+                {
+                    "node id": 42,
+                    "weight": 159
+                }
+            ]
+        },
+        {
+            "node id": 23,
+            "weight": 20,
+            "node owner": 5,
+            "neighbours": [
+                {
+                    "node id": 303,
+                    "weight": 39
+                },
+                {
+                    "node id": 505,
+                    "weight": 219
+                }
+            ]
+        },
+        {
+            "node id": 42,
+            "weight": 194,
+            "node owner": 5,
+            "neighbours": [
+                {
+                    "node id": 909,
+                    "weight": 49
+                }
+            ]
+        }
+    ],
+    "routes": [],
+    "objective functions": [
+        {
+            "id": 23542,
+            "criteria": [
+                {
+                    "metric": "owner",
+                    "operator": "==",
+                    "value": "5"
+                }
+            ]
+        }
+    ]
+}
+
