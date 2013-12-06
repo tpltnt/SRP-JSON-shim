@@ -474,3 +474,49 @@ SRP_Network_t* filter_network(SRP_Network_t* network, char* criteria){
 
   return NULL;
 }
+
+
+/*
+ * Wŕite given route into a JSON file.
+ * @note It is assumes the JSON file describes the notwork state according to the specified format.
+ * @param filename to write to
+ * @param route_id to uniquely identify the route
+ * @param route to be written
+ * @return 1 in case of success, 0 in case of any errors
+ */
+int write_route_to_JSON_file(const char *filename, int route_id, SRP_node_list_t *route) {
+	  json_t *root = NULL;       	//< root of the document tree
+	  json_t *new_route = NULL;		//< object for the new route
+	  json_t *json_routes = NULL;  	//< array of all routes
+	  json_error_t json_error;   	//< error indication
+
+	  if (NULL == filename) {
+		  return 1;
+	  }
+	  if (NULL == route) {
+		  return 1;
+	  }
+
+	  // do initial read of the data + some sanity checks
+	  root = json_load_file(filename, 0, &json_error);
+	  if (!root) {
+	    fprintf(stderr, "%s\n", json_error.text);
+	    return 1;
+	  }
+	  if (!json_is_object(root)) {
+	    fprintf(stderr, "JSON data at root is not an object\n");
+	    return 1;
+	  }
+
+	  // check routes key
+	  json_routes = json_object_get(root, "routes");
+	  if (!json_routes) {
+	    fprintf(stderr, "\"routes\"-key not found\n");
+	    return 1;
+	  }
+	  if (!json_is_array(json_routes)) {
+		  fprintf(stderr, "\"routes\"-key not associated with an array\n");
+		  return 1;
+	  }
+	return 1;
+}

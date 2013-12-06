@@ -76,8 +76,8 @@ SRP_Network_t* filter_network(SRP_Network_t* network, char* criteria);
  * Wŕite given route into a JSON file.
  * @note It is assumes the JSON file describes the notwork state according to the specified format.
  * @param filename to write to
- * @param route-id to uniquely identify the route
+ * @param route_id to uniquely identify the route
  * @param route to be written
  * @return 1 in case of success, 0 in case of any errors
  */
-int write_route_to_JSON_file(const char *filename,const char *route-id, SRP_node_list_t *route);
+int write_route_to_JSON_file(const char *filename, int route_id, SRP_node_list_t *route);
