@@ -16,9 +16,11 @@
 
 
 int main(int argc, char* argv[]){
-  json_t *nodes = NULL;
-  SRP_Network_t *network = NULL;
-  SRP_ObjectiveFunction_t *of = NULL;
+  json_t *nodes = NULL;					//< nodes from JSON
+  SRP_Network_t *network = NULL;		//< network data-structure in SRP-compliant format
+  SRP_ObjectiveFunction_t *of = NULL;	//< objective function / routing criteria
+  SRP_node_list_t *path = NULL;			//< path from start to finish
+  SRP_node_list_element_t *hop = NULL;	//< path from start to finish
 
   // check for correct number of arguments
   if (2 != argc) {
@@ -44,5 +46,23 @@ int main(int argc, char* argv[]){
 	  return 3;
   }
 
+  // adjust weight according to objective function
+  network = SRP_adjust_Network(network, of);
+  if (NULL == network) {
+	  return 4;
+  }
+
+  // find path
+  path = SRP_route(network, 23, 42);
+  if (NULL == path) {
+	  return 5;
+  }
+
+  fprintf(stdout,"calculated route: ");
+  hop = path->start;
+  while (NULL != hop->next) {
+	  fprintf(stdout, "%llu --> ", hop->id);
+	  hop = (SRP_node_list_element_t*)hop->next;
+  }
   return 0;
 }
