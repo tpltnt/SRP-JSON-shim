@@ -146,18 +146,11 @@
     ],
     "routes": [
         {
-            "route id": 27393,
-            "path": [
-                707,
-                303,
-                505,
-                909
-            ]
         }
     ],
     "objective functions": [
         {
-            "id": 23,
+            "id": 23542,
             "criteria": [
                 {
                     "metric": "owner",

@@ -64,5 +64,7 @@ int main(int argc, char* argv[]){
 	  fprintf(stdout, "%llu --> ", hop->id);
 	  hop = (SRP_node_list_element_t*)hop->next;
   }
+  fprintf(stdout, "%llu\n", hop->id);
+
   return 0;
 }

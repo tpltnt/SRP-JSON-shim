@@ -15,15 +15,11 @@ main.o: main.c
 all: srp_datatypes.o data-parser.o main.o
 	$(CC) srp.o srp_datatypes.o data-parser.o main.o `pkg-config --cflags --libs jansson` -o simulation-proxy
 
-testdata: testdata.json testdata2.json testdata3.json
-	cat testdata.json | python3 -m json.tool
-	cat testdata2.json | python3 -m json.tool
-	cat testdata3.json | python3 -m json.tool
+testdata: testdata4.json
+	cat testdata4.json | python3 -m json.tool
 
 test: all testdata
-	./simulation-proxy testdata.json
-	./simulation-proxy testdata2.json
-	./simulation-proxy testdata3.json
+	./simulation-proxy testdata4.json
 
 clean:
 	rm srp.o
