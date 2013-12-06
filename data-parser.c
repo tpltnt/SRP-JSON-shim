@@ -493,6 +493,7 @@ int write_route_to_JSON_file(const char *filename, int route_id, SRP_node_list_t
 	  json_error_t json_error;   	//< error indication
 	  SRP_node_list_element_t *current_node = NULL; //< current node along the path
 
+
 	  if (NULL == filename) {
 		  return 0;
 	  }
@@ -536,7 +537,7 @@ int write_route_to_JSON_file(const char *filename, int route_id, SRP_node_list_t
 		  fprintf(stderr, "packing the route-id failed\n");
 		  return 0;
 	  }
-	  if (0 != json_object_set(json_routes, "route id", data_value)) {
+	  if (0 != json_object_set(new_route, "route id", data_value)) {
 		  fprintf(stderr, "creating 'route-id' key/value pair failed\n");
 		  return 0;
 	  }
