@@ -12,7 +12,10 @@
             "node id": 202,
             "weight": 161,
             "node owner": 5,
-            "neighbours": []
+            "neighbours": [
+                "node id": 42,
+                "weight": 139
+            ]
         },
         {
             "node id": 303,
@@ -40,6 +43,10 @@
                         "maximum": 9.4
                     },
                     "latency": 69
+                },
+                {
+                    "node id": 808,
+                    "weight": 144
                 }
              ]
         },
@@ -68,6 +75,10 @@
                     "weight": 114
                 },
                 {
+                    "node id": 707,
+                    "weight": 92
+                },
+                {
                     "node id": 909,
                     "weight": 193
                 }
@@ -81,6 +92,10 @@
                 {
                     "node id": 404,
                     "weight": 75
+                },
+                {
+                    "node id": 606,
+                    "weight": 194
                 }
             ]
         },
@@ -92,6 +107,10 @@
                 {
                     "node id": 303,
                     "weight": 57
+                },
+                {
+                    "node id": 909,
+                    "weight": 153
                 }
             ]
         },
@@ -114,6 +133,14 @@
                 {
                     "node id": 42,
                     "weight": 159
+                },
+                {
+                    "node id": 505,
+                    "weight": 159
+                },
+                {
+                    "node id": 303,
+                    "weight": 193
                 }
             ]
         },
